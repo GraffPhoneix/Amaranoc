@@ -10,6 +10,12 @@ const localConfigs = {
         { href: '/services', contnet: 'Услуги' },
         { href: '/about-us', contnet: 'О нас' },
     ],
+    MoneyCourses: {
+        "AMD": 1,
+        "USD": 382,
+        "EUR": 445,
+        "RUB": 5
+    }
 };
 
 export default localConfigs;
