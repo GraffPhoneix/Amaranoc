@@ -1,3 +1,11 @@
+import RightUtilBarMap from "./RightUtilBarMap";
+import RightUtilsBarHeader from "./RightUtilsBarHeader";
+
 export function RightUtils() {
-    return <div></div>
+    return (
+        <div>
+            <RightUtilBarMap />
+            <RightUtilsBarHeader />
+        </div>
+    )
 }
