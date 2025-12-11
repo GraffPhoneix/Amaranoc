@@ -1,11 +1,14 @@
-import UtilBar from "@.../commponents/UtilsBar";
+'use client'
+
+import { useSetQuery } from "@.../components/Custom hooks/useSetQuery";
+import UtilBar from "@.../components/UI/UtilsBar";
 
 export default function Main() {
+    useSetQuery()
+
     return (
         <div>
-            <div>
-                <UtilBar />
-            </div>
+            <UtilBar />
         </div>
     )
 }

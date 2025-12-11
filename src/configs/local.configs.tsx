@@ -84,7 +84,7 @@ const localConfigs = {
         "USD": 382,
         "EUR": 445,
         "RUB": 5
-    }
+    },
 };
 
 export default localConfigs;

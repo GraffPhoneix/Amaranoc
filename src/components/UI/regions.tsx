@@ -32,7 +32,6 @@ export default function Regions({ data, setData, loading, setLoading }: RegionsP
                             const parsedRegions = storedRegions ? JSON.parse(storedRegions) : [];
                             setSelectedRegions(parsedRegions);
                         } catch (e) {
-                            console.error("Ошибка парсинга ActiveRegions из LocalStorage:", e);
                             setSelectedRegions([]);
                         }
                     }

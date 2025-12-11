@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 
 export default function MaxPersons() {
-    const [maxPersons, setMaxPersons] = useState<number>(1);
+    const [maxPersons, setMaxPersons] = useState<number>(10);
 
     useEffect(() => {
         const storedValue = localStorage.getItem('MaxPersons');
-        const parsedValue = storedValue ? parseInt(storedValue, 10) : 1;
-        const safeValue = isNaN(parsedValue) || parsedValue < 1 ? 1 : parsedValue;
+        const parsedValue = storedValue ? parseInt(storedValue, 10) : 10;
+        const safeValue = isNaN(parsedValue) || parsedValue < 1 ? 10 : parsedValue;
 
         setMaxPersons(safeValue);
     }, []);

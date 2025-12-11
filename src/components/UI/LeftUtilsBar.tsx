@@ -14,7 +14,7 @@ export default function LeftUtils() {
     const [data, setData] = useState<FirebaseData | null>(null);
     const [loading, setLoading] = useState(true);
     const renderUtilsComponents = () => (
-        <>
+        <div>
             <Regions
                 data={data}
                 setData={setData}
@@ -26,7 +26,7 @@ export default function LeftUtils() {
             <MaxPrice />
             <hr className="my-4 border-t border-gray-200" />
             <MaxPersons />
-        </>
+        </div>
     );
 
     return (

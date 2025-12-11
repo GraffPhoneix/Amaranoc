@@ -1,3 +1,4 @@
+import Hotels from "./hotels";
 import RightUtilBarMap from "./RightUtilBarMap";
 import RightUtilsBarHeader from "./RightUtilsBarHeader";
 
@@ -6,6 +7,8 @@ export function RightUtils() {
         <div>
             <RightUtilBarMap />
             <RightUtilsBarHeader />
+
+            <Hotels />
         </div>
     )
 }

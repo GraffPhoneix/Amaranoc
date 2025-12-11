@@ -23,7 +23,6 @@ export async function getRootData() {
     if (snapshot.exists()) {
         return snapshot.val();
     } else {
-        console.log("Данные не найдены.");
         return null;
     }
 }
