@@ -1,5 +1,5 @@
 import LeftUtils from "./LeftUtilsBar";
-import { RightUtils } from "./RightUtilsBat";
+import { RightUtils } from "./RightUtilsBar";
 
 export default function UtilBar() {
     return (

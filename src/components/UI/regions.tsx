@@ -1,42 +1,34 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from "react";
-import { getRootData } from "@.../lib/firebase";
+import { getData } from "@.../lib/firebase";
 
-interface FirebaseData {
-    regions: string[];
-    [key: string]: any;
-}
-
-interface RegionsProps {
-    data: FirebaseData | null;
-    setData: React.Dispatch<React.SetStateAction<FirebaseData | null>>;
-    loading: boolean;
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function Regions({ data, setData, loading, setLoading }: RegionsProps) {
+export default function Regions() {
+    const [data, setData] = useState<string[] | null>(null);
+    const [loading, setLoading] = useState(true);
     const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
+
     useEffect(() => {
         async function loadData() {
             try {
-                const rootData: FirebaseData | null = await getRootData();
-                setData(rootData);
-                const storedRegions = localStorage.getItem('ActiveRegions');
+                const regionsData: string[] | null = await getData('regions');
+                setData(regionsData);
 
+                // Load selected regions from localStorage
+                const storedRegions = localStorage.getItem('ActiveRegions');
                 if (storedRegions) {
                     if (storedRegions === 'all') {
                         setSelectedRegions([]);
                     } else {
                         try {
-                            const parsedRegions = storedRegions ? JSON.parse(storedRegions) : [];
+                            const parsedRegions = JSON.parse(storedRegions) || [];
                             setSelectedRegions(parsedRegions);
-                        } catch (e) {
+                        } catch {
                             setSelectedRegions([]);
                         }
                     }
                 } else {
-                    localStorage.setItem("ActiveRegions", '');
+                    localStorage.setItem("ActiveRegions", JSON.stringify([]));
                 }
             } catch (error) {
                 console.error('Ошибка при получении данных:', error);
@@ -46,7 +38,7 @@ export default function Regions({ data, setData, loading, setLoading }: RegionsP
             }
         }
         loadData();
-    }, [setData, setLoading]);
+    }, []);
 
     const handleCheckboxChange = (region: string, checked: boolean) => {
         const newSelected = checked
@@ -58,20 +50,21 @@ export default function Regions({ data, setData, loading, setLoading }: RegionsP
     };
 
     if (loading) {
-        return (
-            <div className="text-gray-500">Загрузка регионов...</div>
-        );
+        return <div className="text-gray-500">Загрузка регионов...</div>;
     }
 
-    if (!data || !data.regions) {
+    if (!data || data.length === 0) {
         return <div className="text-gray-500">Нет данных о регионах.</div>;
     }
 
     return (
         <div className="flex flex-col h-48 mb-6">
             <div className="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-black scrollbar-track-gray-200 pr-2">
-                {data.regions.map((region) => (
-                    <label key={region} className="flex items-center p-2 h-8 cursor-pointer">
+                {data.map((region) => (
+                    <label
+                        key={region}
+                        className="flex items-center p-2 h-8 cursor-pointer hover:bg-gray-100 rounded"
+                    >
                         <input
                             type="checkbox"
                             className="mr-2"

@@ -12,17 +12,29 @@ const firebaseConfig = {
     measurementId: "G-0BVYWDXZNL"
 };
 
-const app = !getApps().length
-    ? initializeApp(firebaseConfig)
-    : getApp();
-
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const rtdb = getDatabase(app);
+
 export async function getRootData() {
     const dbRef = ref(rtdb);
     const snapshot = await get(dbRef);
     if (snapshot.exists()) {
         return snapshot.val();
     } else {
+        return null;
+    }
+}
+
+export async function getData(path: string) {
+    try {
+        const dbRef = ref(rtdb, path);
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+            return snapshot.val();
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching data:", error);
         return null;
     }
 }

@@ -1,26 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Regions from "./regions";
 import MaxPersons from "./maxPerson";
 import MaxPrice from "./maxPrice";
 
-interface FirebaseData {
-    regions: string[];
-    [key: string]: any;
-}
-
 export default function LeftUtils() {
-    const [data, setData] = useState<FirebaseData | null>(null);
-    const [loading, setLoading] = useState(true);
     const renderUtilsComponents = () => (
         <div>
-            <Regions
-                data={data}
-                setData={setData}
-                loading={loading}
-                setLoading={setLoading}
-            />
+            <Regions />
 
             <hr className="my-4 border-t border-gray-200" />
             <MaxPrice />

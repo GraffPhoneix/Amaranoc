@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from "react";
+import { HotelsPseudoHeader } from "./hotelsPseudoHeader";
 
 const grids = [2, 3]
+
 
 export function HotelsHeader() {
     const [localGrid, setLocalGrid] = useState(3)
@@ -24,8 +26,10 @@ export function HotelsHeader() {
 
     return (
         <div className="flex">
-            <div className="ml-18 mt-5 text-lg border-b border-gray-200 pb-4">Лучшие предложения</div>
-            <div className="flex  border-b border-gray-200 pb-4 ml-178">
+            <HotelsPseudoHeader
+                status="best"
+            />
+            <div className="flex  border-b border-gray-200 pb-4 ml-197">
                 {buttonsRender()}
             </div>
         </div>

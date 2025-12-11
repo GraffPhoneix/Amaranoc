@@ -4,7 +4,7 @@ export default function RightUtilBarMap() {
     return (
         <div className="flex">
             <button
-                className="border p-2.5 px-7 rounded-3xl ml-20 mt-6 flex items-center space-x-2 hover:cursor-pointer hover:bg-gray-100 duration-150"
+                className="border p-2.5 px-7 rounded-3xl ml-19.5 mt-6.5 flex items-center space-x-2 hover:cursor-pointer hover:bg-gray-100 duration-150"
             >
                 <span>Карта</span>
                 <Image

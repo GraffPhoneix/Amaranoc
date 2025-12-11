@@ -1,23 +1,24 @@
 'use client'
 
-import { getRootData } from '@.../lib/firebase';
+import { getData } from '@.../lib/firebase';
 import { useEffect, useState } from 'react';
 import { Hotel } from '../Types/Hotels';
 import { useSearchParams } from 'next/navigation';
 import HotelsItem from './HotelItem';
-
+import HotelsLoading from './HotelsLoading';
 
 export default function HotelsRender() {
-    const [data, setData] = useState<any>(null);
+    const [fullData, setFullData] = useState<Hotel[] | null>(null);
     const [loading, setLoading] = useState(true);
-    const query = useSearchParams()
-    const gridCols = query.get('hotelsGrid') === '3' ? 'grid-cols-3' : 'grid-cols-2'
+    const query = useSearchParams();
+    const gridCols = query.get('hotelsGrid') === '3' ? 'grid-cols-3' : 'grid-cols-2';
+
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const rootData = await getRootData();
-                setData(rootData);
+                const hotelsData = await getData('hotels');
+                setFullData(hotelsData);
             } catch (error) {
                 console.error("Error fetching data:", error);
             } finally {
@@ -26,15 +27,14 @@ export default function HotelsRender() {
         }
         fetchData();
     }, []);
+
     if (loading) {
         return (
-            <div>
-                <p>Loading</p>
-            </div>
+            <HotelsLoading />
         );
     }
 
-    const hotels = data.hotels.map((hotel: Hotel) => (
+    const hotels = fullData?.map((hotel: Hotel) => (
         <HotelsItem
             key={hotel.id}
             id={hotel.id}
@@ -43,8 +43,7 @@ export default function HotelsRender() {
             maxPersons={hotel.maxPersons}
             price={hotel.price}
         />
-    ));
-
+    )) || [];
 
     return (
         <div className={`grid ${gridCols} gap-2 ml-18 mt-5 w-280`}>

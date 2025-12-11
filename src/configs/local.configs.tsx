@@ -59,10 +59,10 @@ const localConfigs = {
             logo: 'https://api.amaranoc.am/along_river.svg',
             desc: 'У Реки'
         },
-        // {
-        //     logo: 'https://api.amaranoc.am/pavilion.svg',
-        //     desc: 'Павильон'
-        // },
+        {
+            logo: 'https://api.amaranoc.am/pavilion.svg',
+            desc: 'Павильон'
+        },
         // {
         //     logo: 'https://api.amaranoc.am/hotel.svg',
         //     desc: 'Отели'

@@ -35,7 +35,7 @@ export function useSetQuery() {
             if (changed && pathname === '/') {
                 router.replace(`${pathname}?${currentParams.toString()}`)
             }
-        }, 500)
+        }, 200)
 
         return () => clearInterval(intervalId)
     }, [router, pathname])

@@ -3,21 +3,26 @@
 import { useState, useEffect } from "react";
 
 export default function MaxPersons() {
-    const [maxPersons, setMaxPersons] = useState<number>(10);
+    const defaultValue = 1;
+    const [maxPersons, setMaxPersons] = useState<number>(defaultValue);
 
     useEffect(() => {
-        const storedValue = localStorage.getItem('MaxPersons');
-        const parsedValue = storedValue ? parseInt(storedValue, 10) : 10;
-        const safeValue = isNaN(parsedValue) || parsedValue < 1 ? 10 : parsedValue;
-
-        setMaxPersons(safeValue);
+        if (typeof window !== "undefined") {
+            const storedValue = localStorage.getItem("MaxPersons");
+            const parsedValue = storedValue ? parseInt(storedValue, 10) : defaultValue;
+            const safeValue = isNaN(parsedValue) || parsedValue < 1 ? defaultValue : parsedValue;
+            setMaxPersons(safeValue);
+        }
     }, []);
 
     const updateMaxPersons = (newValue: number) => {
         const safeValue = newValue < 1 ? 1 : newValue;
         setMaxPersons(safeValue);
-        localStorage.setItem('MaxPersons', safeValue.toString());
+        if (typeof window !== "undefined") {
+            localStorage.setItem("MaxPersons", safeValue.toString());
+        }
     };
+
     return (
         <div>
             <div className="font-semibold text-base mb-3">Допустимое количество человек</div>
@@ -26,7 +31,9 @@ export default function MaxPersons() {
                     className="h-10 w-10 bg-gray-200 text-black text-2xl rounded-4xl flex items-center justify-center hover:cursor-pointer"
                     onClick={() => updateMaxPersons(maxPersons - 1)}
                     disabled={maxPersons <= 1}
-                >-</button>
+                >
+                    -
+                </button>
                 <div className="flex mx-2">
                     <input
                         type="text"
@@ -38,7 +45,9 @@ export default function MaxPersons() {
                 <button
                     className="h-10 w-10 bg-gray-200 text-black text-2xl rounded-4xl flex items-center justify-center hover:cursor-pointer"
                     onClick={() => updateMaxPersons(maxPersons + 1)}
-                >+</button>
+                >
+                    +
+                </button>
             </div>
         </div>
     );
