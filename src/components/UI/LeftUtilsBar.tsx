@@ -13,18 +13,20 @@ export default function LeftUtils() {
             <hr className="my-4 border-t border-gray-200" />
             <MaxPersons />
         </div>
-
     );
 
     return (
-        <div className="mt-6 ml-43 w-64">
+        <div className="mt-6 p-3.5 ml-42 w-64">
             {renderUtilsComponents()}
             <button
                 className="border-b border-l border-r border-gray-300 w-full text-gray-600 font-semibold p-2 py-3 rounded-b-3xl hover:cursor-pointer"
                 onClick={() => {
-                    localStorage.clear()
+                    localStorage.clear();
                     window.location.reload();
-                }}>Сбросить филтры</button>
+                }}
+            >
+                Сбросить фильтры
+            </button>
         </div>
     );
 }

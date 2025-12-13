@@ -39,14 +39,15 @@ export default function HotelsRender() {
         const maxPriceQuery = parseFloat(query.get('MaxPrice') || '9999999')
         const maxPrice = maxPriceQuery === 0 ? Infinity : maxPriceQuery
         const maxPersonsQuery = parseFloat(query.get('MaxPersons') || '9999999');
-        const maxPersons = maxPersonsQuery === 1 ? -1 : maxPersonsQuery;
+        const maxPersons = maxPersonsQuery === 1 ? Infinity : maxPersonsQuery;
         const activeRegions = JSON.parse(query.get('ActiveRegions') || 'error')
 
         const activeRegionsCheck = activeRegions.length > 0
             ? activeRegions?.includes(hotel.region)
             : true
         const priceCheck = hotel.price > minPrice && hotel.price <= maxPrice
-        const maxPersonsCheck = hotel.maxPersons >= maxPersons
+        const maxPersonsCheck = hotel.maxPersons <= maxPersons
+
         return priceCheck && maxPersonsCheck && activeRegionsCheck;
     })
 
