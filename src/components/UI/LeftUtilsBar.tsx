@@ -8,7 +8,6 @@ export default function LeftUtils() {
     const renderUtilsComponents = () => (
         <div>
             <Regions />
-
             <hr className="my-4 border-t border-gray-200" />
             <MaxPrice />
             <hr className="my-4 border-t border-gray-200" />
@@ -17,7 +16,7 @@ export default function LeftUtils() {
     );
 
     return (
-        <div className="border border-gray-300 rounded-xl mt-6 p-3.5 ml-43 w-64">
+        <div className="border border-gray-300 rounded-xl mt-6 p-3.5 ml-42 w-64">
             {renderUtilsComponents()}
         </div>
     );
