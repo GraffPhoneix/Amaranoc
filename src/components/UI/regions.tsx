@@ -14,7 +14,6 @@ export default function Regions() {
                 const regionsData: string[] | null = await getData('regions');
                 setData(regionsData);
 
-                // Load selected regions from localStorage
                 const storedRegions = localStorage.getItem('ActiveRegions');
                 if (storedRegions) {
                     if (storedRegions === 'all') {

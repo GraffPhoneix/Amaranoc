@@ -15,6 +15,17 @@ export default function MaxPrice() {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
+        if (
+            localStorage.getItem('MinPrice') === null ||
+            localStorage.getItem('MaxPrice') === null ||
+            localStorage.getItem('MoneyType') === null
+        ) {
+            localStorage.setItem('MinPrice', '0');
+            localStorage.setItem('MaxPrice', '0');
+            localStorage.setItem('MoneyType', 'AMD');
+        }
+
+
         const storedMoney = localStorage.getItem("MoneyType");
         const money =
             storedMoney && (localConfigs.MoneyCourses as Record<string, number>)[storedMoney]

@@ -10,7 +10,14 @@ export default function MaxPersons() {
         if (typeof window !== "undefined") {
             const storedValue = localStorage.getItem("MaxPersons");
             const parsedValue = storedValue ? parseInt(storedValue, 10) : defaultValue;
-            const safeValue = isNaN(parsedValue) || parsedValue < 1 ? defaultValue : parsedValue;
+            let safeValue = parsedValue;
+
+            if (isNaN(parsedValue) || parsedValue < 1) {
+                safeValue = defaultValue;
+            } else {
+                localStorage.setItem('MaxPersons', parsedValue.toString());
+            }
+
             setMaxPersons(safeValue);
         }
     }, []);
