@@ -85,6 +85,13 @@ const localConfigs = {
         "EUR": 445,
         "RUB": 5
     },
+    contacts: [
+        { contact: '041-611-611/044-611-611', logo: 'https://amaranoc.am/images/social/phone.svg', href: '#' },
+        { contact: 'AMARANOC.INFO@GMAIL.COM', logo: 'https://amaranoc.am/images/social/mail.svg', href: '#' },
+        { contact: 'AMARANOC.AM', logo: 'https://amaranoc.am/images/social/instagram.svg', href: '#' },
+        { contact: 'AMARANOC.AM', logo: 'https://amaranoc.am/images/social/facebook.svg', href: '#' },
+        { contact: 'ТУМАНЯН 5', logo: '/geolocation.png', href: '#' },
+    ]
 };
 
 export default localConfigs;

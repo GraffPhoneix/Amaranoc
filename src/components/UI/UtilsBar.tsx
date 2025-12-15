@@ -1,3 +1,4 @@
+import SendHotel from "./sendHotel";
 import LeftUtils from "./LeftUtilsBar";
 import { RightUtils } from "./RightUtilsBar";
 

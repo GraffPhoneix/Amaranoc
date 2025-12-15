@@ -62,7 +62,7 @@ export default function HotelsRender() {
                 price={hotel.price}
             />
         ))
-        : <div className='text-xl'>Предложения не найдены :(</div>
+        : <div className='text-xl'>Предложения не найдены.</div>
 
     return (
         <div className={`grid ${gridCols} gap-2 ml-18 mt-5 w-280`}>
