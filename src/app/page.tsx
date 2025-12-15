@@ -10,7 +10,6 @@ export default function Main() {
     return (
         <div>
             <UtilBar />
-            <SendHotel />
         </div>
     )
 }
