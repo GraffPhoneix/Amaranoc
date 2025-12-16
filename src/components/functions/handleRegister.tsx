@@ -3,7 +3,7 @@ import { auth } from "@.../lib/firebase";
 import { getUserData } from "./getUserData";
 
 async function handleRegister() {
-    const userData = getUserData()
+    const userData = getUserData('Register')
     const email = userData.email;
     const password = userData.password;
 

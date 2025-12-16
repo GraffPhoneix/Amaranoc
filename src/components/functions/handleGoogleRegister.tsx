@@ -22,7 +22,7 @@ const handleGoogleRegister = async () => {
 
         console.log("Пользователь зарегистрирован через Google:", user.uid, user.email);
 
-        window.location.reload();
+        window.location.href = '/profile';
 
     } catch (error: any) {
         console.error("Ошибка при регистрации через Google:", error.message);

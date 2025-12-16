@@ -116,6 +116,18 @@ const localConfigs = {
             content: 'password',
         },
     ],
+    loginFormFilds: [
+        {
+            type: 'text',
+            placeholderContent: 'Эл. почта или номер телефона',
+            content: 'emailOrPhone',
+        },
+        {
+            type: 'password',
+            placeholderContent: 'Пароль',
+            content: 'password',
+        },
+    ],
     userAvatar: 'https://amaranoc.am/_next/image?url=%2Fimages%2Fnot-found-avatar.png&w=3840&q=75',
     userData: {},
     isAuth: false,
