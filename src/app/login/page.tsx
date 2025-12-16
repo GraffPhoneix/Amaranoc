@@ -1,9 +1,10 @@
 'use client'
 
-import handleGoogleRegister from '@.../components/functions/handleGoogleRegister';
 import { handleLogin } from '@.../components/functions/handleLogin';
-import LoginFields from '@.../components/UI/loginFields';
+import handleGoogleRegister from '@.../components/functions/handleGoogleRegister';
+import { RegisterFields } from '@.../components/UI/RegisterFields';
 import Link from 'next/link';
+import React from 'react';
 
 export default function Login() {
     return (
@@ -13,27 +14,33 @@ export default function Login() {
                     <h2 className="text-[22px] font-medium text-gray-900">Вход</h2>
                 </div>
 
-                <form className="mt-8 space-y-5">
+                <form className="mt-8 space-y-5" onSubmit={handleLogin}>
                     <div className="space-y-5">
-                        <LoginFields />
+                        <RegisterFields />
                     </div>
+
                     <div className="flex items-center">
                         <div className="text-sm">
-                            <a href="#" className="font-medium text-gray-900 hover:text-gray-700">
+                            <a
+                                href="#"
+                                onClick={(e) => e.preventDefault()}
+                                className="font-medium text-gray-900 hover:text-gray-700"
+                            >
                                 Забыли пароль?
                             </a>
                         </div>
                     </div>
+
                     <div>
                         <button
                             type="submit"
-                            onClick={async () => handleLogin()}
                             className="flex w-full justify-center rounded-full bg-[#FF9E40] px-3 py-4 text-sm font-medium text-white shadow-sm hover:bg-[#e88e35] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF9E40] transition-colors"
                         >
                             Вход
                         </button>
                     </div>
                 </form>
+
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center" aria-hidden="true">
                         <div className="w-full border-t border-gray-100" />
@@ -42,10 +49,11 @@ export default function Login() {
                         <span className="bg-white px-4 text-sm text-gray-500">Или</span>
                     </div>
                 </div>
+
                 <div>
                     <button
                         type="button"
-                        onClick={async () => handleGoogleRegister()}
+                        onClick={() => handleGoogleRegister()}
                         className="flex w-full items-center justify-center gap-3 rounded-full border border-[#FF9E40] bg-white px-3 py-4 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF9E40] transition-colors"
                     >
                         <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
@@ -66,17 +74,13 @@ export default function Login() {
                                 fill="#34A853"
                             />
                         </svg>
-                        <span className="text-sm font-medium leading-6">
-                            Вход с помощью Google
-                        </span>
+                        <span className="text-sm font-medium leading-6">Вход с помощью Google</span>
                     </button>
                 </div>
+
                 <div className="text-center text-sm">
                     <span className="text-gray-900">Еще не зарегистрированы </span>
-                    <Link
-                        href="/profile"
-                        className="font-medium text-[#FF9E40] hover:text-[#e88e35] transition-colors"
-                    >
+                    <Link href="/profile" className="font-medium text-[#FF9E40] hover:text-[#e88e35] transition-colors">
                         Регистрация
                     </Link>
                 </div>

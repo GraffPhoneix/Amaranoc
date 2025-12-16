@@ -1,6 +1,6 @@
-export function getUserData(DataType: 'Login' | 'Register') {
-    if (typeof window !== 'undefined') {
-        const userData = localStorage.getItem(`user${DataType}Data`);
-        return userData ? JSON.parse(userData) : null;
-    }
+export function getUserData() {
+  if (typeof window === 'undefined') return null;
+
+  const raw = localStorage.getItem('userRegisterData');
+  return raw ? JSON.parse(raw) : null;
 }

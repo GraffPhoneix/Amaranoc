@@ -4,6 +4,7 @@ import Image from "next/image";
 import Footer from "./Footer";
 import localConfigs from "@.../configs/local.configs";
 import { getUserData } from "../functions/getUserData";
+import handleLogout from "../functions/signOut";
 
 export default function UserProfile() {
     const userData = getUserData();
@@ -95,6 +96,7 @@ export default function UserProfile() {
                         </button>
 
                         <button
+                            onClick={async () => handleLogout()}
                             className="h-11.5 px-8 rounded-full cursor-pointer border border-gray-300 text-gray-900 hover:bg-gray-50 transition-colors text-[15px] whitespace-nowrap"
                         >
                             Выход
