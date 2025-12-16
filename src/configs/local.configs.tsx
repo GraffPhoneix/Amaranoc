@@ -1,3 +1,5 @@
+import { register } from "module";
+
 const localConfigs = {
     metaData: {
         title: 'Amaranoc',
@@ -91,7 +93,32 @@ const localConfigs = {
         { contact: 'AMARANOC.AM', logo: 'https://amaranoc.am/images/social/instagram.svg', href: '#' },
         { contact: 'AMARANOC.AM', logo: 'https://amaranoc.am/images/social/facebook.svg', href: '#' },
         { contact: 'ТУМАНЯН 5', logo: '/geolocation.png', href: '#' },
-    ]
+    ],
+    registerFormFilds: [
+        {
+            type: 'text',
+            placeholderContent: 'Имя фамилия',
+            content: 'fullName',
+        },
+        {
+            type: 'tel',
+            placeholderContent: 'Номер телефона',
+            content: 'phone',
+        },
+        {
+            type: 'email',
+            placeholderContent: 'Эл. почта',
+            content: 'email',
+        },
+        {
+            type: 'password',
+            placeholderContent: 'Пароль',
+            content: 'password',
+        },
+    ],
+    userAvatar: 'https://amaranoc.am/_next/image?url=%2Fimages%2Fnot-found-avatar.png&w=3840&q=75',
+    userData: {},
+    isAuth: false,
 };
 
 export default localConfigs;

@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getDatabase, ref, get } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCLJSry0gs2qqzOLbKBLVfSNiENq8SZpA4",
@@ -38,3 +39,5 @@ export async function getData(path: string) {
         return null;
     }
 }
+
+export const auth = getAuth(app);
