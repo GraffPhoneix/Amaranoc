@@ -18,7 +18,7 @@ async function handleLogin(e: FormEvent) {
     }
 
     if (!email.includes('@')) {
-        console.log("Firebase email auth поддерживает только email");
+        console.log("email поддерживает только email");
         return;
     }
 

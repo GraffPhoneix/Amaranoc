@@ -7,7 +7,6 @@ async function handleLogout() {
         localStorage.removeItem('isAuth');
         localStorage.removeItem('userLoginData');
         localStorage.removeItem('userRegisterData');
-        console.log("Пользователь вышел из системы");
 
         window.location.href = '/login';
     } catch (error) {

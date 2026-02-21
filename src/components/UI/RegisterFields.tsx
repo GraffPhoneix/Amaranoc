@@ -10,6 +10,7 @@ export function RegisterFields() {
   const [password, setPassword] = useState('');
 
   function handleChange(field: string, value: string) {
+    console.log(`Updating field: ${field} with value: ${value}`);
     switch (field) {
       case 'fullName':
         setFullName(value);
@@ -27,15 +28,17 @@ export function RegisterFields() {
   }
 
   useEffect(() => {
-    localStorage.setItem(
-      'userRegisterData',
-      JSON.stringify({
-        fullName,
-        email,
-        phone,
-        password,
-      })
-    );
+    if (!fullName && !email && !phone && !password && fullName !== '' || email !== '' || phone !== '' || password !== '') {
+      localStorage.setItem(
+        'userRegisterData',
+        JSON.stringify({
+          fullName,
+          email,
+          phone,
+          password,
+        })
+      );
+    }
   }, [fullName, email, phone, password]);
 
   return localConfigs.registerFormFilds.map((field) => (
@@ -45,10 +48,10 @@ export function RegisterFields() {
         placeholder={field.placeholderContent}
         value={
           field.content === 'fullName' ? fullName :
-          field.content === 'email' ? email :
-          field.content === 'phone' ? phone :
-          field.content === 'password' ? password :
-          ''
+            field.content === 'email' ? email :
+              field.content === 'phone' ? phone :
+                field.content === 'password' ? password :
+                  ''
         }
         onChange={(e) => handleChange(field.content, e.target.value)}
         className="w-full rounded-lg border px-3 py-2.5"

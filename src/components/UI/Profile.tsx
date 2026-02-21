@@ -1,13 +1,17 @@
 'use client'
 
-import Image from "next/image";
+import { useState } from 'react';
 import Footer from "./Footer";
 import localConfigs from "@.../configs/local.configs";
 import { getUserData } from "../functions/getUserData";
 import handleLogout from "../functions/signOut";
+import AvatarEditMenu from "../functions/handleAvatarEdit";
+import { set } from 'firebase/database';
 
 export default function UserProfile() {
     const userData = getUserData();
+    const [showMenu, setShowMenu] = useState(false);
+    const [showEditBtn, setShowEditBtn] = useState(true);
 
     return (
         <div>
@@ -17,9 +21,9 @@ export default function UserProfile() {
                     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 w-full lg:w-auto">
 
                         <div className="relative shrink-0">
-                            <div className="w-18 h-[7h-18nded-full overflow-hidden border rounded-full border-gray-100">
-                                <Image
-                                    src={localConfigs.userAvatar}
+                            <div className="w-18 h-18 overflow-hidden border rounded-full border-gray-100">
+                                <img
+                                    src={localStorage.getItem("userAvatar") || 'Something went wrong'}
                                     alt="User Avatar"
                                     width={72}
                                     height={72}
@@ -28,7 +32,11 @@ export default function UserProfile() {
                             </div>
 
                             <button
-                                className="absolute bottom-0 right-0 translate-x-1 translate-y-1 bg-gray-100 hover:bg-gray-200 border border-white rounded-full p-1.5 transition-colors cursor-pointer"
+                                className={`absolute bottom-0 right-0 translate-x-1 translate-y-1 bg-gray-100 hover:bg-gray-200 border border-white rounded-full p-1.5 transition-colors cursor-pointer ${showEditBtn ? '' : 'hidden'}`}
+                                onClick={() => {
+                                    setShowMenu(true);
+                                    setShowEditBtn(false);
+                                }}
                             >
                                 <svg
                                     width="12"
@@ -44,6 +52,15 @@ export default function UserProfile() {
                                     <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
                                 </svg>
                             </button>
+
+                            <AvatarEditMenu
+                                visible={showMenu}
+                                onClose={() => {
+                                    setShowMenu(false)
+                                    setShowEditBtn(true);
+                                }
+                                }
+                            />
                         </div>
 
                         <div className="flex flex-col md:flex-row gap-6 md:gap-16 text-center md:text-left">
@@ -58,7 +75,9 @@ export default function UserProfile() {
                                 <p className="text-gray-900 text-[15px] font-medium">
                                     Номер телефона
                                 </p>
-                                <p className="text-gray-400 text-[15px]">{userData?.phone}</p>
+                                <p className="text-gray-400 text-[15px]">
+                                    {userData?.phone !== null && userData?.phone !== undefined && userData.phone !== '' ? userData.phone : 'Не указан'}
+                                </p>
                             </div>
 
                             <div className="space-y-1">
@@ -71,7 +90,6 @@ export default function UserProfile() {
                     </div>
 
                     <div className="flex items-center gap-3 mt-6 lg:mt-0 w-full lg:w-auto justify-center lg:justify-end">
-
                         <button
                             className="flex items-center cursor-pointer justify-center w-11.5 h-11.5 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
                         >

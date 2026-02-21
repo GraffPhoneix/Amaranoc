@@ -128,7 +128,7 @@ const localConfigs = {
             content: 'password',
         },
     ],
-    userAvatar: 'https://amaranoc.am/_next/image?url=%2Fimages%2Fnot-found-avatar.png&w=3840&q=75',
+    userDefaultAvatar: 'https://amaranoc.am/_next/image?url=%2Fimages%2Fnot-found-avatar.png&w=3840&q=75',
     userData: {},
     isAuth: false,
 };
